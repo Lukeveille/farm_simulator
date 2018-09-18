@@ -11,12 +11,10 @@ class MainMenu
   # Main loop, will ask main menu options until exit is chosen.
   def question_loop
     @home_farm = Farm.new
-    @quit = false
 
     loop do
       questions
       menu_select
-      break if @quit
     end
   end
 
@@ -48,7 +46,7 @@ class MainMenu
       print_relax_message
     when "exit", "5"
       puts "Exiting..."
-      @quit = true
+      exit!
     end
   end
 
@@ -82,7 +80,7 @@ class MainMenu
   # Displays food type and field size.
   def status
     @home_farm.fields.each do |field|
-      puts "#{titleize(field.name)} field is #{field.field_size} hectars."
+      puts "#{titleize(field.type)} field is #{field.field_size} hectars."
     end
     harvest_total
     breakline
